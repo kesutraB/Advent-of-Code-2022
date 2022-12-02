@@ -8,25 +8,80 @@ namespace AoC2022
 	internal class Program
 	{
 
-		private static readonly string[] Input = File.ReadAllLines(@"C:\temp\input.txt");
+		private static readonly string[] Input = File.ReadAllLines(@"C:\temp\day_2.txt");
 
 		static void Main(string[] args)
 		{
 			//day 1
 
-			Console.WriteLine("DAY 1\n");
-			PartOne();
-			PartTwo();
+			// PartOneDayOne();
+			// PartTwoDayOne();
 
 			//day 2
 
-			Console.WriteLine("DAY 2\n");
-
+			PartOneDayTwo();
 		}
+
+		#region day 2
+
+		private static void PartOneDayTwo()
+		{
+			var totalPoints = PointsCalculator();
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine($"My total score is {totalPoints}");
+			Console.ResetColor();
+		}
+
+		private static int PointsCalculator()
+		{
+			var points = 0;
+
+			foreach (var line in Input)
+			{
+				var choices = line.Split(' ');
+				var opponentMove = choices[0];
+				var playerMove = choices[1];
+
+				switch (opponentMove)
+				{
+					case "A" when playerMove == "X":
+						points += 4;
+						break;
+					case "B" when playerMove == "Y":
+						points += 5;
+						break;
+					case "C" when playerMove == "Z":
+						points += 6;
+						break;
+					case "A" when playerMove == "Y":
+						points += 8;
+						break;
+					case "B" when playerMove == "Z":
+						points += 9;
+						break;
+					case "C" when playerMove == "X":
+						points += 7;
+						break;
+					case "A" when playerMove == "Z":
+						points += 3;
+						break;
+					case "B" when playerMove == "X":
+						points += 1;
+						break;
+					case "C" when playerMove == "Y":
+						points += 2;
+						break;
+				}
+			}
+
+			return points;
+		}
+
+		#endregion
 
 		#region day 1
 
-		private static void PartOne()
+		private static void PartOneDayOne()
 		{
 			var calories = CalorieCalculator();
 			Console.ForegroundColor = ConsoleColor.Green;
@@ -34,7 +89,7 @@ namespace AoC2022
 			Console.ResetColor();
 		}
 
-		private static void PartTwo()
+		private static void PartTwoDayOne()
 		{
 			var calories = CalorieCalculator();
 			Console.ForegroundColor = ConsoleColor.Red;
