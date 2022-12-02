@@ -20,6 +20,7 @@ namespace AoC2022
 			//day 2
 
 			PartOneDayTwo();
+			PartTwoDayTwo();
 		}
 
 		#region day 2
@@ -28,7 +29,15 @@ namespace AoC2022
 		{
 			var totalPoints = PointsCalculator();
 			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine($"My total score is {totalPoints}");
+			Console.WriteLine($"My apparent score is {totalPoints}.\n");
+			Console.ResetColor();
+		}
+
+		private static void PartTwoDayTwo()
+		{
+			var totalPoints = PointsCalculator();
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine($"My real score is {totalPoints}.\n");
 			Console.ResetColor();
 		}
 
@@ -45,31 +54,31 @@ namespace AoC2022
 				switch (opponentMove)
 				{
 					case "A" when playerMove == "X":
+						points += 3;
+						break;
+					case "A" when playerMove == "Y":
 						points += 4;
+						break;
+					case "A" when playerMove == "Z":
+						points += 8;
+						break;
+					case "B" when playerMove == "X":
+						points += 1;
 						break;
 					case "B" when playerMove == "Y":
 						points += 5;
-						break;
-					case "C" when playerMove == "Z":
-						points += 6;
-						break;
-					case "A" when playerMove == "Y":
-						points += 8;
 						break;
 					case "B" when playerMove == "Z":
 						points += 9;
 						break;
 					case "C" when playerMove == "X":
-						points += 7;
-						break;
-					case "A" when playerMove == "Z":
-						points += 3;
-						break;
-					case "B" when playerMove == "X":
-						points += 1;
+						points += 2;
 						break;
 					case "C" when playerMove == "Y":
-						points += 2;
+						points += 6;
+						break;
+					case "C" when playerMove == "Z":
+						points += 7;
 						break;
 				}
 			}
