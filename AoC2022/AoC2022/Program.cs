@@ -4,8 +4,7 @@ namespace AoC2022
 {
 	internal class Program
 	{
-
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			//day 1
 			

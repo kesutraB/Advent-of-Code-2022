@@ -26,10 +26,10 @@ namespace AoC2022.days
 			Console.ResetColor();
 		}
 
-		private static List<int> CalorieCalculator()
+		private static IEnumerable<int> CalorieCalculator()
 		{
-			List<int> elves = new List<int>();
-			int currentElf = 0;
+			var elves = new List<int>();
+			var currentElf = 0;
 
 			foreach (var line in Input)
 			{

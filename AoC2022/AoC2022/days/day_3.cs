@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -29,32 +28,26 @@ namespace AoC2022.days
 		{
 			var partOne = 0;
 			var partTwo = 0;
-			var alphabet = "0abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			const string alphabet = "0abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 			foreach (var line in Input)
 			{
-				var firstHalf = line.Substring(0, line.Length / 2);
-				var secondHalf = line.Substring(line.Length / 2);
+				var firstHalf = line[..(line.Length / 2)];
+				var secondHalf = line[(line.Length / 2)..];
 
-				foreach (var letter in firstHalf)
+				foreach (var letter in firstHalf.Where(letter => secondHalf.Contains(letter)))
 				{
-					if (secondHalf.Contains(letter))
-					{
-						partOne += alphabet.IndexOf(letter);
-						break;
-					}
+					partOne += alphabet.IndexOf(letter);
+					break;
 				}
 			}
 
-			for (int i = 0; i < Input.Length; i += 3)
+			for (var i = 0; i < Input.Length; i += 3)
 			{
-				foreach (var letter in Input[i])
+				foreach (var letter in Input[i].Where(letter => Input[i + 1].Contains(letter) && Input[i + 2].Contains(letter)))
 				{
-					if (Input[i + 1].Contains(letter) && Input[i + 2].Contains(letter))
-					{
-						partTwo += alphabet.IndexOf(letter);
-						break;
-					}
+					partTwo += alphabet.IndexOf(letter);
+					break;
 				}
 			}
 
