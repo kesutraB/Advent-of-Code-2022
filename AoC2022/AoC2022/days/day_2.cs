@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace AoC2022.days
@@ -28,7 +27,6 @@ namespace AoC2022.days
 		{
 			var apparentPoints = 0;
 			var totalPoints = 0;
-			var points = 0;
 
 			foreach (var line in Input)
 			{
@@ -77,12 +75,7 @@ namespace AoC2022.days
 				}
 			}
 
-			if (!explained)
-				points = apparentPoints;
-			else
-				points = totalPoints;
-
-			return points;
+			return !explained ? apparentPoints : totalPoints;
 		}
 	}
 }
