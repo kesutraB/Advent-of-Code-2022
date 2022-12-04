@@ -20,6 +20,10 @@ namespace AoC2022
 
 			day_3.PartOne();
 			day_3.PartTwo();
+
+			//day 4
+
+			day_4.PartOne();
 		}
 	}
 }
