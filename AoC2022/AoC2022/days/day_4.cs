@@ -9,30 +9,42 @@ namespace AoC2022.days
 
 		public static void PartOne()
 		{
-			var sum = OverlappingCalculator();
+			var sum = OverlappingCalculator(false);
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine($"One range fully contains the other in {sum} assignment pairs.\n");
 			Console.ResetColor();
 		}
 
-		private static int OverlappingCalculator()
+		public static void PartTwo()
 		{
-			var sum = 0;
+			var sum = OverlappingCalculator(true);
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine($"One range overlaps the other in {sum} assignment pairs.\n");
+			Console.ResetColor();
+		}
+
+		private static int OverlappingCalculator(bool whichPart)
+		{
+			var partOne = 0;
+			var partTwo = 0;
 
 			foreach (var line in Input)
 			{
 				var firstRange = line[..line.IndexOf(",")].Split('-');
 				var secondRange = line[(line.IndexOf(",") + 1)..].Split('-');
-				var firstId = int.Parse(firstRange[0]);
-				var secondId = int.Parse(firstRange[1]);
-				var thirdId = int.Parse(secondRange[0]);
-				var fourthId = int.Parse(secondRange[1]);
+				var firstStart = int.Parse(firstRange[0]);
+				var firstEnd = int.Parse(firstRange[1]);
+				var secondStart = int.Parse(secondRange[0]);
+				var secondEnd = int.Parse(secondRange[1]);
 
-				if ((firstId > thirdId || secondId < fourthId) && (thirdId > firstId || fourthId < secondId)) continue;
-				sum++;
+				if ((firstStart <= secondStart && firstEnd >= secondEnd) || (secondStart <= firstStart && secondEnd >= firstEnd))
+					partOne++;
+
+				if (firstEnd >= secondStart && secondEnd >= firstStart)
+					partTwo++;
 			}
 
-			return sum;
+			return !whichPart ? partOne : partTwo;
 		}
 	}
 }

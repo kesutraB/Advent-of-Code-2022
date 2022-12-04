@@ -24,6 +24,7 @@ namespace AoC2022
 			//day 4
 
 			day_4.PartOne();
+			day_4.PartTwo();
 		}
 	}
 }
